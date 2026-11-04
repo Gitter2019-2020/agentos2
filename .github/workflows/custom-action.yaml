@@ -5,6 +5,7 @@ on:
 
 permissions:
   contents: read
+  models: read
   copilot-requests: write
 
 jobs:
@@ -13,19 +14,12 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v6
-
-      - name: Install Copilot CLI
-        run: npm install -g @github/copilot
-
       - name: Run AI Inference via Copilot
         id: inference
         uses: actions/ai-inference@v1
         with:
           prompt: Summarize the latest changes in this repository.
-          model: gpt-4.1
-        # env:
-        #   COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }}
+          #model: gpt-4.1
 
       - name: Print output
         run: echo "${{ steps.inference.outputs.response }}"

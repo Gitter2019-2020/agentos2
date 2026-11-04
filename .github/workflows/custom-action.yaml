@@ -1,26 +1,54 @@
 name: AI inference
+
 on:
   issues:
     types: [opened]
 
 permissions:
   contents: read
-  models: read
+  issues: write
   copilot-requests: write
 
 jobs:
   copilot:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v6
-        with:
-          fetch-depth: 2
+
       - name: Install Copilot CLI
         run: npm install -g @github/copilot
+
       - name: Run Copilot
-        run: copilot -p "Use git show HEAD to summarize the changes in this commit" -s --allow-tool='shell(git show:*)'
+        id: copilot
+        run: |
+          RESPONSE=$(copilot -p "
+          Summarize this GitHub issue in maximum 2 sentences.
+
+          Title:
+          ${{ github.event.issue.title }}
+
+          Body:
+          ${{ github.event.issue.body }}
+          " -s)
+
+          {
+            echo "response<<EOF"
+            echo "$RESPONSE"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
         env:
           GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Add comment
+        run: |
+          gh issue comment \
+            ${{ github.event.issue.number }} \
+            --body "This is my summary:
+
+          ${{ steps.copilot.outputs.response }}"
+        env:
+          GH_TOKEN: ${{ github.token }}
 
 
 # jobs:

@@ -3,6 +3,10 @@ on:
   issues:
     types: [opened]
 
+permissions:
+  contents: read
+  copilot-requests: write
+
 jobs:
   inference:
     runs-on: ubuntu-latest
@@ -20,8 +24,8 @@ jobs:
         with:
           prompt: Summarize the latest changes in this repository.
           model: gpt-4.1
-        env:
-          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }}
+        # env:
+        #   COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }}
 
       - name: Print output
         run: echo "${{ steps.inference.outputs.response }}"

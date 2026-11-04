@@ -22,6 +22,8 @@ jobs:
       - name: Run AI Inference via Copilot
         id: inference
         uses: actions/ai-inference@v3
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
         with:
           prompt: Summarize the latest changes in this repository.
           #model: gpt-4.1

@@ -43,9 +43,8 @@ jobs:
           copilot -p "
             Use ONLY the MCP server named gh-mcp.
 
-            Do NOT use gh CLI.
-
-            Do NOT use any built-in GitHub tools.
+            Repository owner/repo:
+            ${{ github.repository }}
 
             Create an issue titled 'Boooooooyah'.
             " -s --assisted-approval

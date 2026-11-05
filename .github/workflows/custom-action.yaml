@@ -26,10 +26,14 @@ jobs:
 
           cat > ~/.copilot/mcp-config.json << EOF
           {
-            "name": "github-aks",
-            "url": "https://github-mcp.ypto-sdcoe.com/",
-            "headers": {
-              "Authorization": "Bearer ${{ secrets.TEST }}"
+            "mcpServers": {
+              "gh-mcp": {
+                "type": "http",
+                "url": "https://github-mcp.ypto-sdcoe.com/",
+                "headers": {
+                  "Authorization": "Bearer ${{ secrets.TEST }}"
+                }
+              }
             }
           }
           EOF

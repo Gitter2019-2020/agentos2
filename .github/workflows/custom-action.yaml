@@ -38,10 +38,12 @@ jobs:
           }
           EOF
           echo "******************************************************"
+          copilot mcp disable github-mcp-server
+          echo "******************************************************"
           copilot mcp list
           echo "******************************************************"
 
-          copilot -p "Create a new issue with title 'this is amazing' and body you can fill with some random text" -s
+          copilot -p "Create a new issue with title 'this is amazing' and body you can fill with some random text" -s --assisted-approval
         env:
           GITHUB_TOKEN: ${{ github.token }}
           TEST: ${{ secrets.TEST }}

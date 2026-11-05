@@ -14,7 +14,7 @@ permissions:
 #     toolsets: [default]
 mcp-servers:
   github-aks:
-    url: "https://mcp.github-aks.com/sse"
+    url: "https://github-mcp.ypto-sdcoe.com/"
     allowed: ["*"]
     headers:
       Authorization: "Bearer ${{ secrets.TEST }}"

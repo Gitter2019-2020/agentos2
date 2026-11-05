@@ -9,9 +9,15 @@ permissions:
   pull-requests: read
   copilot-requests: write
 
-tools:
-  github:
-    toolsets: [default]
+# tools:
+#   github:
+#     toolsets: [default]
+mcp-servers:
+  github-aks:
+    url: "https://mcp.github-aks.com/sse"
+    allowed: ["*"]
+    headers:
+      Authorization: "Bearer ${{ secrets.TEST }}"
 
 safe-outputs: 
   add-comment: 

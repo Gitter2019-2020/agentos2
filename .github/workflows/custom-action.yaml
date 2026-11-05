@@ -1,4 +1,4 @@
-name: AI inference
+name: Architect
 
 on:
   issues:
@@ -14,14 +14,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
-
-      - name: Install Copilot CLI
-        run: npm install -g @github/copilot
-          
       - name: Run Copilot
         id: copilot
         run: |
+          npm install -g @github/copilot
+
           mkdir -p ~/.copilot
 
           cat > ~/.copilot/mcp-config.json << EOF
@@ -50,7 +47,7 @@ jobs:
 
             Do NOT use any built-in GitHub tools.
 
-            Create an issue titled 'mcp test'.
+            Create an issue titled 'Boooooooyah'.
             " -s --assisted-approval
         env:
           GITHUB_TOKEN: ${{ github.token }}

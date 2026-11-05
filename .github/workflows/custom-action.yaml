@@ -43,7 +43,15 @@ jobs:
           copilot mcp list
           echo "******************************************************"
 
-          copilot -p "Create a new issue with title 'this is amazing' and body you can fill with some random text" -s --assisted-approval
+          copilot -p 
+            "Use ONLY the MCP server named gh-mcp.
+
+            Do NOT use gh CLI.
+
+            Do NOT use any built-in GitHub tools.
+
+            Create an issue titled "mcp test"." 
+          -s --assisted-approval
         env:
           GITHUB_TOKEN: ${{ github.token }}
           TEST: ${{ secrets.TEST }}

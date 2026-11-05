@@ -22,30 +22,28 @@ jobs:
       - name: Run Copilot
         id: copilot
         run: |
-          RESPONSE=$(copilot -p "
-          Summarize this GitHub issue in maximum 2 sentences.
+          copilot mcp
+
+          echo "******************************************************"
+
+
+          copilot -p "Summarize this GitHub issue in maximum 2 sentences.
 
           Title:
           ${{ github.event.issue.title }}
 
           Body:
           ${{ github.event.issue.body }}
-          " -s)
-
-          {
-            echo "response<<EOF"
-            echo "$RESPONSE"
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
+          " -s
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
-      - name: Add comment
-        run: |
-          gh issue comment \
-            ${{ github.event.issue.number }} \
-            --body "This is my summary:
+      # - name: Add comment
+      #   run: |
+      #     gh issue comment \
+      #       ${{ github.event.issue.number }} \
+      #       --body "This is my summary:
 
-          ${{ steps.copilot.outputs.response }}"
-        env:
-          GH_TOKEN: ${{ github.token }}
+      #     ${{ steps.copilot.outputs.response }}"
+      #   env:
+      #     GH_TOKEN: ${{ github.token }}

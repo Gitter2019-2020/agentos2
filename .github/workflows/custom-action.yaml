@@ -49,27 +49,3 @@ jobs:
           ${{ steps.copilot.outputs.response }}"
         env:
           GH_TOKEN: ${{ github.token }}
-
-
-# jobs:
-#   inference:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v6
-
-#       - uses: actions/setup-node@v6
-
-#       - name: Install Copilot CLI
-#         run: npm install -g @github/copilot
-
-#       - name: Run AI Inference via Copilot
-#         id: inference
-#         uses: actions/ai-inference@v3
-#         env:
-#           COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
-#         with:
-#           prompt: Summarize the latest changes in this repository.
-#           #model: gpt-4.1
-
-#       - name: Print output
-#         run: echo "${{ steps.inference.outputs.response }}"

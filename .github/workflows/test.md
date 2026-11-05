@@ -23,8 +23,5 @@ safe-outputs:
   add-comment: 
     max: 1
 ---
-Use the MCP server named github-aks.
-
-Do not use built-in GitHub tools.
-
-List the available tools on github-aks.
+Create an issue titled "MCP smoke test".
+The issue body should contain the text "This is a test for the MCP server github-aks."

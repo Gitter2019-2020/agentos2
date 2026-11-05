@@ -37,14 +37,7 @@ jobs:
           copilot mcp list
           echo "******************************************************"
 
-          copilot -p "Summarize this GitHub issue in maximum 2 sentences.
-
-          Title:
-          ${{ github.event.issue.title }}
-
-          Body:
-          ${{ github.event.issue.body }}
-          " -s
+          copilot -p "Create a new issue with title 'this is amazing' and body you can fill with some random text" -s
         env:
           GITHUB_TOKEN: ${{ github.token }}
           TEST: ${{ secrets.TEST }}

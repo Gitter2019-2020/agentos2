@@ -33,8 +33,12 @@ permissions:
 safe-outputs: 
   add-comment: 
     max: 1
+  create-pull-request:
+    max: 1
 ---
-Create a minimalistic asp.net core console application that converts all input text to uppercase.
+Create a minimalistic ASP.NET Core console application that converts all input text to uppercase.
+
+Create a pull request containing the changes.
 
 
 <!-- ---

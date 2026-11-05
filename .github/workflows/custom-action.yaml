@@ -43,17 +43,7 @@ jobs:
           copilot mcp list
           echo "******************************************************"
 
-          copilot -p "Create a new issue with title 'this is amazing' and body you can fill with some random text" -s --assisted-approval
+          copilot -p "Create a new issue with title 'this is amazing' and body you can fill with some random text" -s
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          # GITHUB_TOKEN: ${{ github.token }}
           TEST: ${{ secrets.TEST }}
-
-      # - name: Add comment
-      #   run: |
-      #     gh issue comment \
-      #       ${{ github.event.issue.number }} \
-      #       --body "This is my summary:
-
-      #     ${{ steps.copilot.outputs.response }}"
-      #   env:
-      #     GH_TOKEN: ${{ github.token }}

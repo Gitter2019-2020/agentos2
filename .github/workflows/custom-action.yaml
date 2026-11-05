@@ -22,9 +22,9 @@ jobs:
       - name: Run Copilot
         id: copilot
         run: |
-          mkdir -p ~/.config/github-copilot
+          mkdir -p ~/.copilot
 
-          cat > ~/.config/github-copilot/mcp.json << EOF
+          cat > ~/.copilot/mcp-config.json << EOF
           {
             "name": "github-aks",
             "url": "https://github-mcp.ypto-sdcoe.com/",

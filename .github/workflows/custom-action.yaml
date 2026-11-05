@@ -18,14 +18,24 @@ jobs:
 
       - name: Install Copilot CLI
         run: npm install -g @github/copilot
-
+          
       - name: Run Copilot
         id: copilot
         run: |
-          copilot mcp
+          mkdir -p ~/.config/github-copilot
 
+          cat > ~/.config/github-copilot/mcp.json << EOF
+          {
+            "name": "github-aks",
+            "url": "https://github-mcp.ypto-sdcoe.com/",
+            "headers": {
+              "Authorization": "Bearer ${{ secrets.TEST }}"
+            }
+          }
+          EOF
           echo "******************************************************"
-
+          copilot mcp list
+          echo "******************************************************"
 
           copilot -p "Summarize this GitHub issue in maximum 2 sentences.
 
@@ -37,6 +47,7 @@ jobs:
           " -s
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          TEST: ${{ secrets.TEST }}
 
       # - name: Add comment
       #   run: |

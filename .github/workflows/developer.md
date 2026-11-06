@@ -1,4 +1,6 @@
 ---
+name: Developer
+
 on:
   issues:
     types: [opened]
@@ -36,9 +38,10 @@ safe-outputs:
   create-pull-request:
     max: 1
 ---
-Create a minimalistic ASP.NET Core console application that converts all input text to uppercase.
+Adapt the existing ASP.NET Core console application that converts all input text to uppercase so that 
+it also reverses the text.
 
-Create a pull request containing the changes.
+Create a pull request named "Evil stuff :-)" containing the changes.
 
 
 <!-- ---

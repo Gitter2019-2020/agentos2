@@ -14,7 +14,7 @@ jobs:
     uses: ./.github/workflows/copilot-common.yaml
     with:
       prompt: |
-        Adapt the existing ASP.NET Core console application so that it produces the first 3 prime numbers as an output.
+        Adapt the existing ASP.NET Core console application so that it produces 10 times the name Ines in the output.
 
         Directly commit and push to the main branch.
     secrets: inherit

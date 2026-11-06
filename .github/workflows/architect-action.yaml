@@ -48,7 +48,7 @@ jobs:
 
             Adapt the existing ASP.NET Core console application so that it produces the first 15 prime numbers as an output.
 
-            Create a pull request named "Prime numbers craziness" containing the changes.
+            Create a pull request named 'Prime numbers craziness' containing the changes.
             " -s --assisted-approval
         env:
           GITHUB_TOKEN: ${{ github.token }}

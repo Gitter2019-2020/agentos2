@@ -44,16 +44,20 @@ jobs:
         env:
           TEST: ${{ secrets.TEST }}  
 
-      # - name: Verify model
-      #   shell: bash
-      #   run: |
-      #     if ! copilot -p models | grep -Fxq "${{ inputs.model }}"; then
-      #       echo "ERROR: Model '${{ inputs.model }}' is not available."
-      #       echo ""
-      #       echo "Available models:"
-      #       copilot -p models
-      #       exit 1
-      #     fi
+      - name: Verify model
+        shell: bash
+        run: |
+          AVAILABLE_MODELS="$(copilot help config | sed -n '/`model`:/,/`contextTier`:/p')"
+          echo "Available models:"
+          echo "$AVAILABLE_MODELS"
+
+          echo "**** Checking model availability ****"
+          if echo "$AVAILABLE_MODELS" | grep -Fxq "${{ inputs.model }}"; then
+            echo "Model '${{ inputs.model }}' is valid."
+          else
+            echo "Model '${{ inputs.model }}' is NOT available."
+            exit 1
+          fi    
 
       - name: Run Copilot
         run: |

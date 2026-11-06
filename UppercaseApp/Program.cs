@@ -1,10 +1,19 @@
-// Minimal ASP.NET Core host used as a console app: reads stdin, writes uppercase to stdout.
+// Minimal ASP.NET Core host used as a console app: writes the first 15 prime numbers to stdout.
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
 var app = builder.Build();
 
-string? line;
-while ((line = Console.ReadLine()) is not null)
+const int Count = 15;
+var primes = new List<int>();
+for (var candidate = 2; primes.Count < Count; candidate++)
 {
-    Console.WriteLine(line.ToUpperInvariant());
+    if (primes.TakeWhile(p => p * p <= candidate).All(p => candidate % p != 0))
+    {
+        primes.Add(candidate);
+    }
+}
+
+foreach (var prime in primes)
+{
+    Console.WriteLine(prime);
 }

@@ -1,0 +1,51 @@
+name: Agent
+
+on:
+  workflow_call:
+    inputs:
+      prompt:
+        required: true
+        type: string
+
+jobs:
+  copilot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run Copilot
+        id: copilot
+        run: |
+          npm install -g @github/copilot
+
+          mkdir -p ~/.copilot
+
+          cat > ~/.copilot/mcp-config.json << EOF
+          {
+            "mcpServers": {
+              "gh-mcp": {
+                "type": "http",
+                "url": "https://github-mcp.ypto-sdcoe.com/",
+                "headers": {
+                  "Authorization": "Bearer ${{ secrets.TEST }}"
+                }
+              }
+            }
+          }
+          EOF
+          echo "******************************************************"
+          copilot mcp disable github-mcp-server
+          echo "******************************************************"
+          copilot mcp list
+          echo "******************************************************"
+
+          copilot -p "
+            Use ONLY the MCP server named gh-mcp.
+
+            Repository owner/repo:
+            ${{ github.repository }}
+
+            ${{ inputs.prompt }}
+            " -s --assisted-approval
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          TEST: ${{ secrets.TEST }}

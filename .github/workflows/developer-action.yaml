@@ -1,0 +1,20 @@
+name: Developer
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  pull-requests: write
+  copilot-requests: write
+
+jobs:
+  developer:
+    uses: ./.github/workflows/copilot-common.yml
+    with:
+      prompt: |
+        Adapt the existing ASP.NET Core console application so that it produces the first 3 prime numbers as an output.
+
+        Directly commit and push to the main branch.
+    secrets: inherit

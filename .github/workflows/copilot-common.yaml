@@ -1,4 +1,4 @@
-name: Agent
+name: Copilot Common
 
 on:
   workflow_call:

@@ -1,4 +1,4 @@
-name: Auto Approve
+name: Reviewer
 
 on:
   workflow_run:
@@ -14,9 +14,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v5
+
       - name: Merge PR
         run: |
           gh pr merge ${{ github.event.workflow_run.pull_requests[0].number }} \
+            --repo ${{ github.repository }} \
             --auto \
             --squash
         env:

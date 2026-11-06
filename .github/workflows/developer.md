@@ -39,7 +39,7 @@ safe-outputs:
     max: 1
 ---
 Adapt the existing ASP.NET Core console application that converts all input text to uppercase so that 
-it also reverses the text.
+it also reverses the text and adds numbers in between the characters.
 
 Create a pull request named "Evil stuff :-)" containing the changes.
 

@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   developer:
-    uses: ./.github/workflows/copilot-common.yml
+    uses: ./.github/workflows/copilot-common.yaml
     with:
       prompt: |
         Adapt the existing ASP.NET Core console application so that it produces the first 3 prime numbers as an output.

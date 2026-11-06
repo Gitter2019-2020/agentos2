@@ -46,11 +46,11 @@ jobs:
       - name: Verify model
         shell: bash
         run: |
-          if ! copilot models | grep -Fxq "${{ inputs.model }}"; then
+          if ! copilot -p models | grep -Fxq "${{ inputs.model }}"; then
             echo "ERROR: Model '${{ inputs.model }}' is not available."
             echo ""
             echo "Available models:"
-            copilot models
+            copilot -p models
             exit 1
           fi
 

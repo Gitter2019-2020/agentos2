@@ -1,9 +1,9 @@
-// Minimal ASP.NET Core host used as a console app: writes the first 15 prime numbers to stdout.
+// Minimal ASP.NET Core host used as a console app: writes the first 3 prime numbers to stdout.
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
 var app = builder.Build();
 
-const int Count = 15;
+const int Count = 3;
 var primes = new List<int>();
 for (var candidate = 2; primes.Count < Count; candidate++)
 {

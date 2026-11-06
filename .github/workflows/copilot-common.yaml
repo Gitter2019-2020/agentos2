@@ -47,15 +47,18 @@ jobs:
       - name: Verify model
         shell: bash
         run: |
-          AVAILABLE_MODELS="$(copilot help config | sed -n '/`model`:/,/`contextTier`:/p')"
-          echo "Available models:"
+          AVAILABLE_MODELS="$(copilot help config \
+          | sed -n '/`model`:/,/`contextTier`:/p' \
+          | sed -n 's/.*"\([^"]*\)".*/\1/p')"
+
+          echo "**** Available models ****"
           echo "$AVAILABLE_MODELS"
 
           echo "**** Checking model availability ****"
           if echo "$AVAILABLE_MODELS" | grep -Fxq "${{ inputs.model }}"; then
-            echo "Model '${{ inputs.model }}' is valid."
+            echo "[OK] Model '${{ inputs.model }}' is valid."
           else
-            echo "Model '${{ inputs.model }}' is NOT available."
+            echo "[ERROR] Model '${{ inputs.model }}' is NOT available."
             exit 1
           fi    
 

@@ -17,7 +17,6 @@ jobs:
 
     steps:
       - name: Configure Copilot
-        id: copilot
         run: |
           npm install -g @github/copilot
 
@@ -56,7 +55,6 @@ jobs:
           fi
 
       - name: Run Copilot
-        id: copilot
         run: |
           copilot -p "
               Use ONLY the MCP server named gh-mcp.
